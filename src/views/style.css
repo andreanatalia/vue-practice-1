@@ -86,7 +86,11 @@ h1:hover {
 .table tbody tr:nth-child(2n) td {
   background: rgb(255, 255, 255);
 }
-
+.redondeado {
+  border-radius: 5px;
+  width: 300pt;
+  height: 20pt;
+}
 @keyframes neon2 {
   from {
     text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px rgb(214, 206, 129), 0 0 70px  rgb(214, 206, 129), 0 0 80px  rgb(214, 206, 129), 0 0 100px  rgb(214, 206, 129), 0 0 150px  rgb(214, 206, 129);

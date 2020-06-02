@@ -4,7 +4,11 @@
       <div class="home">
         <h1>Welcome to the Library!</h1>
         <div class="search-gr">
-          <input v-model="searchItem" placeholder="Search item" />
+          <input
+            v-model="searchItem"
+            placeholder="Search item"
+            class="redondeado"
+          />
         </div>
         <div class="radioButtonFilter">
           <input
