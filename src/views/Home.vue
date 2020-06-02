@@ -3,12 +3,10 @@
     <div class="format-text">
       <div class="home">
         <h1>Welcome to the Library!</h1>
-        <div class="search-gruoup">
-          <input v-model="name" placeholder="Search item" />
-          <button @click="searchByName()">Search for name</button>
-          <button @click="searchByDescription()">Search for description</button>
+        <div class="search-gr">
+          <input v-model="searchItem" placeholder="Search item" />
         </div>
-        <div class="radio-button-filter">
+        <div class="radioButtonFilter">
           <input
             type="radio"
             v-model="selectedCategory"
@@ -26,10 +24,10 @@
           <input
             type="radio"
             v-model="selectedCategory"
-            value="Newspaper"
+            value="Newspapers"
             id="r-newspaper"
           />
-          <label for="r-newspaper">Newspaper</label>
+          <label for="r-newspaper">Newspapers</label>
           <input
             type="radio"
             v-model="selectedCategory"
@@ -44,26 +42,25 @@
             id="r-all"
           />
           <label for="r-all">All</label>
-          <p></p>
-          <table class="table">
-            <thead>
-              <tr>
-                <th>CODE</th>
-                <th>NAME</th>
-                <th>DESCRIPTION</th>
-                <th>CATEGORY</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr :key="item.name" v-for="item in itemsList">
-                <td>{{ item.code }}</td>
-                <td>{{ item.name }}</td>
-                <td>{{ item.description }}</td>
-                <td>{{ item.category }}</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>CODE</th>
+              <th>NAME</th>
+              <th>DESCRIPTION</th>
+              <th>CATEGORY</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr :key="item.code" v-for="item in filteredList">
+              <td>{{ item.code }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.description }}</td>
+              <td>{{ item.category }}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -77,12 +74,13 @@ export default {
     return {
       name: "",
       selectedCategory: "All",
-      itemsList: [
+      searchItem: "",
+      list: [
         {
           code: "1",
           name: "Automata Theory, Languages, and Computation",
           description: "Definition and exercises",
-          category: "Book"
+          category: "Books"
         },
         {
           code: "2",
@@ -106,7 +104,7 @@ export default {
           code: "5",
           name: "The Adventures of Sherlock Holmes",
           description: "Fictional story about a detective",
-          category: "Book"
+          category: "Books"
         },
         {
           code: "6",
@@ -119,7 +117,29 @@ export default {
   },
   computed: {
     filteredList() {
-      return this.itemsList;
+      if (this.searchItem === "") {
+        if (this.selectedCategory !== "All") {
+          return this.list.filter(
+            item => item.category === this.selectedCategory
+          );
+        }
+      } else if (this.searchItem !== "" && this.selectedCategory === "All") {
+        return this.searchItem === ""
+          ? this.list
+          : this.list.filter(
+              item =>
+                item.name.toUpperCase() === this.searchItem.toUpperCase() ||
+                item.description.toUpperCase() === this.searchItem.toUpperCase()
+            );
+      } else if (this.searchItem !== "" && this.selectedCategory !== "All") {
+        return this.list.filter(
+          item =>
+            item.category === this.selectedCategory &&
+            (item.name.toUpperCase() === this.searchItem.toUpperCase() ||
+              item.description.toUpperCase() === this.searchItem.toUpperCase())
+        );
+      }
+      return this.list;
     }
   }
 };
