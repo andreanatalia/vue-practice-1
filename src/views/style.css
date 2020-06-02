@@ -1,15 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 body {
   margin: 0;
   background-repeat: no-repeat;
   font: 15px Helvetica, Arial;
-}
-
-.font-one{
-  background-image: url("../assets/fondo-pastel.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
 }
 
 .font-two{
@@ -24,8 +18,8 @@ body {
   background-color: #e9e9e9ec;
   text-align: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  width: 900pt;
-  height: 900pt;
+  width: 800pt;
+  height: 800pt;
   margin-left: auto;
   margin-right: auto;
 }
@@ -42,7 +36,59 @@ button {
   margin-left: 20px;
 }
 
+.radio-button-filter{
+  margin: 35pt;
+}
 
-  
 
+h1 {
+  font-family: Pacifico;
+  color: black;
+  font-size: 3em;
+  text-align: center;
+  transition: all 0.5s;
+  margin: 2px;
+  padding: 23px;
+}
 
+h1:hover {
+  animation: neon2 1s ease-in-out infinite alternate;
+}
+
+.table{
+  padding:25px;
+  margin-top: 20px;
+  width: 743pt;
+  border-collapse: collapse;
+  border: 4px solid rgb(0, 0, 0);
+
+}
+
+.table th {
+  text-transform: uppercase;
+  text-align: center;
+  color: white;
+  padding: 10px;
+  min-width: 35px;
+  max-width: 150px;
+  background: black;
+}
+
+.table td{
+  text-align: center;
+  padding: 10px;
+  border-right: 2px solid black;
+}
+
+.table tbody tr:nth-child(2n) td {
+  background: rgb(255, 255, 255);
+}
+
+@keyframes neon2 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px rgb(214, 206, 129), 0 0 70px  rgb(214, 206, 129), 0 0 80px  rgb(214, 206, 129), 0 0 100px  rgb(214, 206, 129), 0 0 150px  rgb(214, 206, 129);
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF;
+  }
+}
